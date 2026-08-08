@@ -115,4 +115,11 @@ class Controller:
             f"Y={measurement.acceleration_y}, "
             f"Z={measurement.acceleration_z}"
         )
+        print(
+            "Gyro:    "
+            f"X={measurement.gyroscope_x}, "
+            f"Y={measurement.gyroscope_y}, "
+            f"Z={measurement.gyroscope_z}"
+        )
+        print(f"Battery:  {measurement.battery_voltage_mv} mV")
         print("-" * 60)

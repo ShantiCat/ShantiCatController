@@ -18,7 +18,11 @@ class CollarAdvertisementDecoder:
     # h - acceleration X
     # h - acceleration Y
     # h - acceleration Z
-    PAYLOAD_STRUCT = struct.Struct("<BBHhhh")
+    # h - gyroscope X
+    # h - gyroscope Y
+    # h - gyroscope Z
+    # H  battery_voltage_mv
+    PAYLOAD_STRUCT = struct.Struct("<BBHhhhhhhH")
 
     def __init__(self, manufacturer_id: int = 0xFFFF) -> None:
         """Initialize the decoder."""
@@ -51,6 +55,10 @@ class CollarAdvertisementDecoder:
             acceleration_x,
             acceleration_y,
             acceleration_z,
+            gyroscope_x,
+            gyroscope_y,
+            gyroscope_z,
+            battery_voltage_mv,
         ) = self.PAYLOAD_STRUCT.unpack(payload)
 
         return CollarMeasurement(
@@ -63,4 +71,8 @@ class CollarAdvertisementDecoder:
             acceleration_x=acceleration_x,
             acceleration_y=acceleration_y,
             acceleration_z=acceleration_z,
+            gyroscope_x=gyroscope_x,
+            gyroscope_y=gyroscope_y,
+            gyroscope_z=gyroscope_z,
+            battery_voltage_mv=battery_voltage_mv,
         )
